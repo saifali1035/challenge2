@@ -30,6 +30,30 @@ Total 7 files
 
 
 
+# Testing
+
+connect to load balancer via ssh "use appropriate key" , then run these.
+
+sudo apt-get update
+sudo apt-get install -y stress
+
+Above installs a package named stress which will be used to simulate stress on CPU
+
+CPU_USAGE_PERCENTAGE=90
+
+Above created a enviroment variable
+
+stress --cpu 1 --timeout 300s --verbose
+
+creates a stress of 90% on CPU and holds it for 5 mins
+
+
+During this period CPU load will increase and cloud watch alarm will be triggered whih will deploy autoscaling policy and one instance will be added.
+After 5 mins, the CPU load will go down and the same will happen but this time dwonscaling will happen.
+
+
+
+
   
                   
        
